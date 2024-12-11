@@ -32,6 +32,12 @@ public class Data {
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
+        // Remove newlines
+        content = content.replace("\n", "");
+        // Remove carriage returns
+        content = content.replace("\r", "");
+        // Remove EOF
+        content = content.replace("\u001a", "");
         // Return the string
         return content;
     }
