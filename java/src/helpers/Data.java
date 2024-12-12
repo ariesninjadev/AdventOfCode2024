@@ -73,4 +73,19 @@ public class Data {
         return content;
     }
 
+    public static String getFromFileRaw(String path) {
+        // Get the file
+        File file = new File(path);
+        // Build the string
+        String content = "";
+        // Read the file
+        try {
+            content = new String(java.nio.file.Files.readAllBytes(file.toPath()));
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+        // Return the string
+        return content;
+    }
+
 }
