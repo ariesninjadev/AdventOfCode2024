@@ -3,18 +3,12 @@ import helpers.Data;
 public class Day4a {
 
     public static void main(String[] args) {
-        // Get the crossword's first line to get the number of columns
-        int cols = Data.getFromFileByLines("java/resources/day4.txt")[0].length();
 
-        // Get full crossword to get the number of rows
-        String crossword = Data.getFromFile("java/resources/day4.txt");
-        int rows = crossword.length() / cols;
-
-        // Get the crossword as a 2D array
-        char[][] crosswordArray = new char[rows][cols];
-        for (int i = 0; i < rows; i++) {
-            crosswordArray[i] = crossword.substring(i * cols, (i + 1) * cols).toCharArray();
-        }
+        // Get the relevant data
+        Data d = new Data("java/resources/day4.txt");
+        int rows = d.getRows();
+        int cols = d.getCols();
+        char[][] crosswordArray = d.getAs2dArray();
 
         // We only need to match the word "XMAS" but in all directions
         String word = "XMAS";

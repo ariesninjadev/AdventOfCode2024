@@ -4,6 +4,37 @@ import java.io.File;
 
 public class Data {
 
+    private String path;
+    private int cols;
+    private int rows;
+    private char[][] data;
+
+    public Data(String path) {
+        this.path = path;
+        this.cols = Data.getFromFileByLines(path)[0].length();
+
+        String d = Data.getFromFile(path);
+        this.rows = d.length() / cols;
+
+        char[][] a = new char[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            a[i] = d.substring(i * cols, (i + 1) * cols).toCharArray();
+        }
+        this.data = a;
+    }
+
+    public char[][] getAs2dArray() {
+        return this.data;
+    }
+
+    public int getCols() {
+        return this.cols;
+    }
+
+    public int getRows() {
+        return this.rows;
+    }
+
     // Get the content of a file as an array of lines
     public static String[] getFromFileByLines(String path) {
         // Get the file
