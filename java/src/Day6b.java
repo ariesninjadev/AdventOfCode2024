@@ -4,6 +4,28 @@ import java.util.Set;
 
 public class Day6b {
 
+    private static class Result {
+        private final Set<Day6b.Coords> positions;
+        private int cycleCount;
+
+        public Result(Set<Day6b.Coords> positions, int cycleCount) {
+            this.positions = positions;
+            this.cycleCount = cycleCount;
+        }
+
+        public Set<Day6b.Coords> getPositions() {
+            return positions;
+        }
+
+        public int getCycleCount() {
+            return cycleCount;
+        }
+
+        public void incrementCycleCount() {
+            cycleCount++;
+        }
+    }
+
     private static char[][] defaultArea;
     private static CoordsDirection start;
 
@@ -13,9 +35,12 @@ public class Day6b {
     }
 
     // Record for coordinates
-    record Coords(int x, int y) { }
+    record Coords(int x, int y) {
+    }
+
     // Record for coordinates with direction
-    private record CoordsDirection(int x, int y, Direction direction) { }
+    private record CoordsDirection(int x, int y, Direction direction) {
+    }
 
     public static void main(String[] args) {
         // Get the relevant data
@@ -119,27 +144,5 @@ public class Day6b {
             }
             ++y;
         }
-    }
-}
-
-class Result {
-    private final Set<Day6b.Coords> positions;
-    private int cycleCount;
-
-    public Result(Set<Day6b.Coords> positions, int cycleCount) {
-        this.positions = positions;
-        this.cycleCount = cycleCount;
-    }
-
-    public Set<Day6b.Coords> getPositions() {
-        return positions;
-    }
-
-    public int getCycleCount() {
-        return cycleCount;
-    }
-
-    public void incrementCycleCount() {
-        cycleCount++;
     }
 }

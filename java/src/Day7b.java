@@ -1,16 +1,18 @@
 import helpers.Data;
 
-enum Operation {
+public class Day7b {
+
+    private enum Operation {
         ADD,
         MULT,
         CONCAT
     }
-    
-    class Equation {
-        
+
+    private static class Equation {
+
         long result;
         long[] values;
-        
+
         public Equation(String raw) {
             String[] parts = raw.split(": ");
             result = Long.parseLong(parts[0]);
@@ -20,9 +22,9 @@ enum Operation {
                 values[i] = Long.parseLong(vRaw[i]);
             }
         }
-        
+
         public boolean check() {
-            Operation[] scheme = new Operation[values.length-1];
+            Operation[] scheme = new Operation[values.length - 1];
             for (int i = 0; i < scheme.length; i++) {
                 scheme[i] = Operation.ADD;
             }
@@ -42,9 +44,9 @@ enum Operation {
                 // Check if the equation works
                 long sum = values[0];
                 for (int k = 1; k < values.length; k++) {
-                    if (scheme[k-1] == Operation.ADD) {
+                    if (scheme[k - 1] == Operation.ADD) {
                         sum += values[k];
-                    } else if (scheme[k-1] == Operation.MULT) {
+                    } else if (scheme[k - 1] == Operation.MULT) {
                         sum *= values[k];
                     } else {
                         sum = Long.parseLong(String.valueOf(sum) + String.valueOf(values[k]));
@@ -56,30 +58,28 @@ enum Operation {
             }
             return false;
         }
-        
+
         public long getResult() {
             return result;
         }
-        
+
     }
 
-public class Day7b {
-
     public static void main(String[] args) {
-        
+
         // Init counter
         long count = 0l;
 
         // Get the data
         String[] data = Data.getFromFileByLines("java/resources/day7.txt");
-        
+
         for (String s : data) {
             Equation e = new Equation(s);
             if (e.check()) {
                 count += e.getResult();
             }
         }
-        
+
         System.out.println(count);
 
     }
